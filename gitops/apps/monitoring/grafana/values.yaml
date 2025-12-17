@@ -1,0 +1,24 @@
+serviceAccount:
+  create: true
+  name: grafana-sa
+persistence:
+  enabled: false
+adminUser: admin
+replicas: 1
+ingress:
+  enabled: true
+  labels: {}
+  ingressClassName: "traefik"
+  path: /
+  pathType: Prefix
+  hosts:
+    - grafana.garnaudov.com
+  tls:
+    - secretName: grafana-tls
+      hosts:
+        - grafana.garnaudov.com
+
+grafana.ini:
+  server:
+    domain: grafana.garnaudov.com
+    root_url: https://grafana.dc1mon.bk.ocp

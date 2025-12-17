@@ -8,7 +8,7 @@ metadata:
 spec:
   description: System Workloads
   sourceRepos:
-    - 'git@github.com:gd-arnold/cluster'
+    - '*'
   destinations:
     - server: '*'
       namespace: '*'

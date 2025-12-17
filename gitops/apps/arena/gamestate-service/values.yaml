@@ -1,0 +1,44 @@
+image:
+  repository: "gyorgy19/game-state-service"
+  tag: "0.1.0"
+
+serviceAccount:
+  create: true
+  name: "gamestate-service"
+
+service:
+  type: ClusterIP
+  port: 3002
+
+ingress:
+  enabled: false
+
+env:
+  - name: PORT
+    value: "3002"
+  - name: SERVICE_NAME
+    value: "gamestate-service"
+  - name: ARENA_SIZE
+    value: "900"
+  - name: MATCH_DURATION_SECONDS
+    value: "90"
+  - name: GAMESTATE_ERROR_RATE
+    value: "0"
+  - name: MOVE_SPEED
+    value: "18"
+  - name: ORB_VALUE
+    value: "50"
+  - name: MOVE_REWARD
+    value: "0"
+  - name: LASER_DAMAGE
+    value: "0"
+  - name: LASER_GAP_SIZE
+    value: "0"
+  - name: LASER_GAP_CHANCE
+    value: "0"
+  - name: LASER_COUNT
+    value: "3"
+  - name: LASER_SPEED
+    value: "180"
+  - name: ORBS_PER_ARENA
+    value: "7"

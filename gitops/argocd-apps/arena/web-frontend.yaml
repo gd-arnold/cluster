@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: web-frontend
+  namespace: argocd
+spec:
+  project: arena
+  sources:
+    - repoURL: git@github.com:gd-arnold/cluster.git
+      targetRevision: main
+      path: charts/web-frontend
+      helm:
+        valueFiles:
+          - $values/gitops/apps/arena/web-frontend/values.yaml
+    - repoURL: git@github.com:gd-arnold/cluster.git
+      targetRevision: main
+      path: .
+      ref: values
+    - repoURL: git@github.com:gd-arnold/cluster.git
+      targetRevision: main
+      path: gitops/apps/arena/web-frontend/sealedsecrets
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: arena-web-frontend
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: true

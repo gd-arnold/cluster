@@ -1,0 +1,26 @@
+image:
+  repository: "gyorgy19/matchmaking-service"
+  tag: "0.1.0"
+
+serviceAccount:
+  create: true
+  name: "matchmaking-service"
+
+service:
+  type: ClusterIP
+  port: 3001
+
+ingress:
+  enabled: false
+
+env:
+  - name: PORT
+    value: "3001"
+  - name: SERVICE_NAME
+    value: "matchmaking-service"
+  - name: GAMESTATE_URL
+    value: "http://gamestate-service.gamestate-service.svc.cluster.local:3002"
+  - name: MAX_ARENA_PLAYERS
+    value: "8"
+  - name: MATCHMAKING_DELAY_MS_MAX
+    value: "0"

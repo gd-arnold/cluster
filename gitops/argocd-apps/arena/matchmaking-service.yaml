@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: matchmaking-service
+  namespace: argocd
+spec:
+  project: arena
+  sources:
+    - repoURL: git@github.com:gd-arnold/cluster.git
+      targetRevision: main
+      path: charts/arena/matchmaking-service
+      helm:
+        valueFiles:
+          - $values/gitops/apps/arena/matchmaking-service/values.yaml
+    - repoURL: git@github.com:gd-arnold/cluster.git
+      targetRevision: main
+      path: .
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: arena-matchmaking-service
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: true

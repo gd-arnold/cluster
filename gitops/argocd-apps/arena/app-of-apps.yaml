@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: arena-app-of-apps
+  namespace: argocd
+spec:
+  project: arena
+  source:
+    repoURL: git@github.com:gd-arnold/cluster.git
+    targetRevision: main
+    path: gitops/argocd-apps/arena
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      selfHeal: true

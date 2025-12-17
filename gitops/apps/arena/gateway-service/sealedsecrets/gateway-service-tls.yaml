@@ -3,14 +3,14 @@
   "apiVersion": "bitnami.com/v1alpha1",
   "metadata": {
     "name": "gateway-service-tls",
-    "namespace": "gateway-service",
+    "namespace": "arena-gateway-service",
     "creationTimestamp": null
   },
   "spec": {
     "template": {
       "metadata": {
         "name": "gateway-service-tls",
-        "namespace": "gateway-service",
+        "namespace": "arena-gateway-service",
         "creationTimestamp": null
       },
       "type": "kubernetes.io/tls"

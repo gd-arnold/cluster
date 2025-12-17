@@ -3,14 +3,14 @@
   "apiVersion": "bitnami.com/v1alpha1",
   "metadata": {
     "name": "web-frontend-tls",
-    "namespace": "web-frontend",
+    "namespace": "arena-web-frontend",
     "creationTimestamp": null
   },
   "spec": {
     "template": {
       "metadata": {
         "name": "web-frontend-tls",
-        "namespace": "web-frontend",
+        "namespace": "arena-web-frontend",
         "creationTimestamp": null
       },
       "type": "kubernetes.io/tls"

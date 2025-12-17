@@ -19,7 +19,7 @@ env:
   - name: SERVICE_NAME
     value: "matchmaking-service"
   - name: GAMESTATE_URL
-    value: "http://gamestate-service.gamestate-service.svc.cluster.local:3002"
+    value: "http://gamestate-service.arena-gamestate-service.svc.cluster.local:3002"
   - name: MAX_ARENA_PLAYERS
     value: "8"
   - name: MATCHMAKING_DELAY_MS_MAX

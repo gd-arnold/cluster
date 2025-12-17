@@ -32,8 +32,8 @@ env:
   - name: SERVICE_NAME
     value: "gateway-service"
   - name: MATCHMAKING_URL
-    value: "http://matchmaking-service.matchmaking-service.svc.cluster.local:3001"
+    value: "http://matchmaking-service.arena-matchmaking-service.svc.cluster.local:3001"
   - name: GAMESTATE_URL
-    value: "http://gamestate-service.gamestate-service.svc.cluster.local:3002"
+    value: "http://gamestate-service.arena-gamestate-service.svc.cluster.local:3002"
   - name: POLL_INTERVAL_MS
     value: "100"

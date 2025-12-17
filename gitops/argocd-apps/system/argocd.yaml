@@ -11,17 +11,17 @@ spec:
       targetRevision: "9.1.3"
       helm:
         valueFiles:
-          - $values/gitops/apps/argocd/values.yaml
-    - repoURL: git@github.com:gd-arnold/cluster
+          - $values/gitops/apps/system/argocd/values.yaml
+    - repoURL: git@github.com:gd-arnold/cluster.git
       targetRevision: main
       path: .
       ref: values
-    - repoURL: git@github.com:gd-arnold/cluster
+    - repoURL: git@github.com:gd-arnold/cluster.git
       targetRevision: main
-      path: gitops/apps/argocd/sealedsecrets
-    - repoURL: git@github.com:gd-arnold/cluster
+      path: gitops/apps/system/argocd/sealedsecrets
+    - repoURL: git@github.com:gd-arnold/cluster.git
       targetRevision: main
-      path: gitops/apps/argocd/projects
+      path: gitops/apps/system/argocd/projects
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

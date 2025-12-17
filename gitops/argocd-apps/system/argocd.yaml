@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  project: system
+  sources:
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argo-cd
+      targetRevision: "9.1.3"
+      helm:
+        valueFiles:
+          - $values/gitops/apps/argocd/values.yaml
+    - repoURL: git@github.com:gd-arnold/cluster
+      targetRevision: main
+      path: .
+      ref: values
+    - repoURL: git@github.com:gd-arnold/cluster
+      targetRevision: main
+      path: gitops/apps/argocd/sealedsecrets
+    - repoURL: git@github.com:gd-arnold/cluster
+      targetRevision: main
+      path: gitops/apps/argocd/projects
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: true

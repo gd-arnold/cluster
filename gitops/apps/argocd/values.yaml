@@ -1,0 +1,17 @@
+global:
+  domain: argocd.garnaudov.com
+
+configs:
+  params:
+    server.insecure: true
+
+server:
+  ingress:
+    enabled: true
+    ingressClassName: "traefik"
+
+    ## TLS certificate will be retrieved from a TLS secret `argocd-server-tls`
+    ## You can create this secret via `certificate` or `certificateSecret` option
+    tls: true
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: "websecure"

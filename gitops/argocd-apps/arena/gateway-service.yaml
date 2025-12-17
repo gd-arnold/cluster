@@ -16,7 +16,7 @@ spec:
       targetRevision: main
       path: .
       ref: values
-    - repoURL: git@github.com:gd-arnold/lgtm
+    - repoURL: git@github.com:gd-arnold/cluster.git
       targetRevision: main
       path: gitops/apps/arena/gateway-service/sealedsecrets
   destination:

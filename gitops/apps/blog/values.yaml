@@ -1,0 +1,21 @@
+image:
+  repository: "gyorgy19/blog"
+  tag: "0.1.0"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: "traefik"
+  annotations: {}
+  hosts:
+    - host: garnaudov.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: blog-tls
+      hosts:
+        - garnaudov.com

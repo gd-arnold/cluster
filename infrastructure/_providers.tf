@@ -4,6 +4,10 @@ terraform {
       source  = "hetznercloud/hcloud"
       version = "~> 1.57"
     }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 5.15.0"
+    }
   }
 
   cloud {
@@ -17,4 +21,8 @@ terraform {
 
 provider "hcloud" {
   token = var.hcloud_token
+}
+
+provider "cloudflare" {
+  api_token = var.cloudflare_token
 }

@@ -1,13 +1,6 @@
-serviceAccount:
-  create: true
-  name: grafana-sa
-persistence:
-  enabled: false
-adminUser: admin
 replicas: 1
 ingress:
   enabled: true
-  labels: {}
   ingressClassName: "traefik"
   path: /
   pathType: Prefix
@@ -21,4 +14,4 @@ ingress:
 grafana.ini:
   server:
     domain: grafana.garnaudov.com
-    root_url: https://grafana.dc1mon.bk.ocp
+    root_url: https://grafana.garnaudov.com

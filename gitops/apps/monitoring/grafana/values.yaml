@@ -15,3 +15,8 @@ grafana.ini:
   server:
     domain: grafana.garnaudov.com
     root_url: https://grafana.garnaudov.com
+
+persistence:
+  enabled: true
+  size: 5Gi
+  storageClassName: local-path

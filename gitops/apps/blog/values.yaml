@@ -1,6 +1,6 @@
 image:
   repository: "gyorgy19/blog"
-  tag: "0.3.2"
+  tag: "0.3.3"
 
 service:
   type: ClusterIP

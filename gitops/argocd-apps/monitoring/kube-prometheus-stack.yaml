@@ -6,7 +6,7 @@ metadata:
 spec:
   project: monitoring
   sources:
-    - repoURL: oci://ghcr.io/prometheus-community/charts
+    - repoURL: https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
       targetRevision: "80.9.2"
       helm:

@@ -1,0 +1,15 @@
+grafana:
+  enabled: false
+
+prometheusSpec:
+  retention: 2d
+  retentionSize: "5GiB"
+  storageSpec:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: local-path
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 5Gi
+

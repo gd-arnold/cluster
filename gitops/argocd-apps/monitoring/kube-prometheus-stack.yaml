@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus-stack
+  namespace: argocd
+spec:
+  project: monitoring
+  sources:
+    - repoURL: oci://ghcr.io/prometheus-community/charts
+      chart: kube-prometheus-stack
+      targetRevision: "80.9.2"
+      helm:
+        valueFiles:
+          - $values/gitops/apps/monitoring/kube-prometheus-stack/values.yaml
+    - repoURL: git@github.com:gd-arnold/cluster.git
+      targetRevision: main
+      path: .
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-prometheus-stack
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true

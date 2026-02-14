@@ -1,0 +1,46 @@
+global:
+  extraEnvFrom:
+    - secretRef:
+        name: mimir-s3
+
+mimir:
+  structuredConfig:
+    usage_stats:
+      enabled: false
+    common:
+      storage:
+        backend: s3
+        s3:
+          endpoint: fsn1.your-objectstorage.com
+          access_key_id: "${AWS_ACCESS_KEY_ID}"
+          secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
+    blocks_storage:
+      s3:
+        bucket_name: metrics-chunks
+    alertmanager_storage:
+      s3:
+        bucket_name: metrics-alertmanager
+    ruler_storage:
+      s3:
+        bucket_name: metrics-ruler
+    limits:
+      compactor_block_retention_period: 1d
+
+ingester:
+  zoneAwareReplication:
+    enabled: false
+
+overrides_exporter:
+  enabled: false
+
+rollout_operator:
+  enabled: false
+
+minio:
+  enabled: false
+
+nginx:
+  enabled: false
+
+gateway:
+  enabled: false

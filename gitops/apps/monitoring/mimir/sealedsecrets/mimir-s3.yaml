@@ -1,0 +1,22 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "mimir-s3",
+    "namespace": "mimir",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "mimir-s3",
+        "namespace": "mimir",
+        "creationTimestamp": null
+      }
+    },
+    "encryptedData": {
+      "AWS_ACCESS_KEY_ID": "AgAAOtZvOdRAMe3J4q6LNn6kBwr+ZvbNJI8kfT7yZScA3cWGYTb/wZ8BLx++Z627Y5q33u6hZ8mo9p8JiF4KClheJx3YYdVGIc7N+NerZbyTq8l0O1jVV1zMUh6lBHSjWg6HItFu26xSti0gAujy7Qnpwl21C0L4lqunvBImi6hXIjQbkEkNDVUYWDbNyjYejvBFt8NiGDmXIR9xyUNYZzI9Lg/C3sNpS7UbkIvYiyA0tUk/WwSnZ1p6pOaTFoo4pGJ6C5dlet6jPylmguVld1gMZwMkiJVgmrn1mPB+4yJgbxly0jWdsnbCQA1CnphgagQHoDaLzeHoBNofgmoccsgwd83RWPDlBiaNuVYkJAsvnBcAZe8DRoCyv0xpDeue2vKlJ22SVVA5/kpElWyUsH9Mv5QYcizeWUJ+uJmh7hH5KzgxYwrN+naMCYSMaJ3IXX2ypX7hgpeg1wb6SqrZJEH849zoX0ZwXCzQnnEEng3NK7c7SCWSjeZtBw6F/MBHArYK0IM4OECvNjGDybN2wT9GGlDJMSg3JbuoBTfBtVy4cDBElUk6VzFhzy2N2g9zzFtah0Tp+KOCAV4eLL+k0LbIFwyFzVZAMTTvPocDH0vDKtG1U9bxfLh/r9yNKKMIa/1bQuZlcyypyfdRJLUs6PcL5rSEj52nCEazPUcqtSBo2brcC3xL3eP6C3eDXO7XzvI0LMmrQhchrpqy3I6czM+XxgmmKA==",
+      "AWS_SECRET_ACCESS_KEY": "AgCiYmgCfGz3GQY/j01V06Pm1Lnz4JVnw0iciBuz7bOykMkiL5d8bMYIA1uWoup8BdPRLoV3JWjiyT3XFzJdxsF0qINzn+37N6Hy5/F1zhHfJrZ1qCVWotGWb8FvXf+QhSSLla5k4qY5IJhQM+BdL8X3ICSD98CdK59G7TRvvVc6SvHaoO+0QH4Z6Vz5DBorimxwsgJRCWhQ01q47Zb1/WhFebFgFrZxNl0spPPO9E57CJn605SFoZTr85eOz0CbxpDSTQPx7C2qv4A25zAqowrWpSlILQxJzt+lKq+E4p7ARl3hGjCh9Y39xrI/FTUKrIa3wEJcyl/cbT6XYnKSzh8OOTa4taJpHWG+D101XFIZM1nTb946PoZ9/ETtgv96wZUz0bZgPO8hvvC4DymsELJEhxEZbc6j08k89Q4xCc1l9SdzR9rpbckCq3vzgnrCRbeJog+/DQl8te0A0JGlYA62aaL+3yMRJnjJldlngfIV2CSv0t4Lvd8kUj9fOmqZuJ3tmABLBiJE4mbotjOcpxyOfvxjIGZ1vHkUp8ZD2yTQGBXLdemzqNTujPy/vR0tO8ii+8oMoWxi7EBkPwjmbw4Oa4dDuhXInDqd1SMzY1ZA4MKsduYdr/WJJ7VK+UPI12FGi5FqIUAOJjaL+mnB5mBSsVXwIerHwUyZCaIt7d929bkX/MyGKX26F7JzFc6C/udsI7Su6NrwL9b2/Ff2J9Jj9LKAqQyXdTdvg6Tyb1K3EPibsI2BexK/"
+    }
+  }
+}

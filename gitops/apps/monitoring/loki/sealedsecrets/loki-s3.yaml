@@ -1,0 +1,23 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "loki-s3",
+    "namespace": "loki",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "loki-s3",
+        "namespace": "loki",
+        "creationTimestamp": null
+      },
+      "type": "Opaque"
+    },
+    "encryptedData": {
+      "AWS_ACCESS_KEY_ID": "AgA+xnEkqXhQqfCxWGpBq4YbLv/tUEP2u92x5OgrmpBhyUwyAhsvOOAb5iOT0EYnwAIOBcpnhHuZLDUxIXKJGXHTKHvk43TRbxDb0/BKXsd9HacNE8Y9p+uGyDWwgHVmVzMAGOh3uBP1qHxOnI0AFFsOJDzjmELByi8xLbbsgX1ERTnuKhKGhPht4m5DEA0ytowjWQJv41wZggFJ/yE8XtpIaEGoHdWp+OxzweF1xo2U5pIjwIzjUXdSpHEgDRrfVa86xiDfj0R+w5LyCvIJDktcM6BMnMfsVoNi/N6l1TaFs/VmRVclV0HJbDcAhc4WirO16mEILKcS1ZsH26p7HjDz9/pGlTxW5+52Xro/PAA4zyMeFZysQIwok+1AAjpTq6ZlmIra5SVBZ7lhwshVhwP42ifXn/z8QhHzh1RmTcNI0iEkH23dPcniuurqiVTDbP6FUILyPwDAj1xhMMvMeA9CWXv2UEQKg3anD8VRk7AUU1XRmWCHg6tMln9OFcE6NVYOB53dFV5Nr9/ZYwn7y5kj4FWWUjEq8lMELupjfDKaEVxTgYJsCtqfTzgnDh9O7HQLz1fB0TXoEeP/cogaVdI+alKYgc8PBL1ETl5gGXLnVTZRWpj8snN0LW5YGvU9I1iBIipsGgzgMeTtt6KFYatyBBrAkbDaBzHyLBo7XtqMp3BSnP9DhcbPL9HNAre6dWz28CKABu7gFNd+hXEPJcxnHrC5QQ==",
+      "AWS_SECRET_ACCESS_KEY": "AgCFeXSnAglUFSQzPL5XJeqqiod6TObiae/Lw7Dd8o3Lw9Yd99yutpF32LVR7EWuv9UwgIn6B6bQf1vIq0+rGi9ryPJy8mpj27xlTAf+Kcic3NihAcrc7Enp3ycOfCeP2LXg8l5g1sDnSVULnNkEfmftx5pWfLucDN5k3m7epquFRCbUqRsnLRHCjMvAeyLlpDdGJMgotSqpwfv57IVGe8RmkU1jQCWFo6yMhqLzbZ8wf3lpt3okNYIzBslAztgZwjkbO/duDrq9P6DkwBhCjlTWTqTWg2ifOTj+fexNfK4E11zhMMUhxUKSeXlTEOLJwKi40Si2DnrIuKb+9e2ZUoJ7wa1ZYoce06cmbPJaTST/nhl2naPwB15dpZ/j9ljPfavhzt+Dl0NEpoSu5OcKtd2zXgKr9JvkRFXeUteItWFZv/0aBY3Dd3ujrkAVZNOJntUMs3zTYsrD5k6pvFIrrrTGPLLb4BX1ENMwNGAtNRzyUfPV//1N6ZG3WhOt2r+NsMeTZMnqcX+zioNsB9iFk8iXkrVpuqXxVwLQLCEwjXYhYGOLckeW8ellyKDiqJ6dS7s1EJzbPcFkQ3jd+C+rszfKsA8K2Iv5wXzCCXoFAbEZNJ80fk7PG+vcs8NcZj9UroaOK42CxoJ1rmhD3ZW0poyIoP9WJT5zc6lnwqiQrbyoBNKdeB1zRYhfr9VRmAZyXKHHLy5yCmp3LWMkD3neU4XFTYR5lmaf50g0E5jD9Hn7Y/5fgiHPA9VP"
+    }
+  }
+}

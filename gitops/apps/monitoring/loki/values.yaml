@@ -80,6 +80,11 @@ compactor:
   persistence:
     enabled: true
     size: 1Gi
+    claims:
+      - name: data
+        accessModes:
+          - ReadWriteOnce
+        size: 1Gi
 
 ruler:
   replicas: 1

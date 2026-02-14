@@ -24,7 +24,7 @@ mimir:
       s3:
         bucket_name: metrics-ruler
     limits:
-      compactor_block_retention_period: 1d
+      compactor_blocks_retention_period: 1d
 
 ingester:
   zoneAwareReplication:

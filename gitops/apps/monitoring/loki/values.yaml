@@ -21,6 +21,7 @@ loki:
       
   compactor:
     retention_enabled: true
+    delete_request_store: s3
   pattern_ingester:
     enabled: true
   analytics:

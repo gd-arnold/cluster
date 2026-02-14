@@ -6,6 +6,16 @@ metadata:
 spec:
   project: monitoring
   sources:
+    - repoURL: https://grafana.github.io/helm-charts
+      chart: loki
+      targetRevision: "6.38.0"
+      helm:
+        valueFiles:
+          - $values/gitops/apps/monitoring/loki/values.yaml
+    - repoURL: git@github.com:gd-arnold/cluster.git
+      targetRevision: main
+      path: .
+      ref: values
     - repoURL: git@github.com:gd-arnold/cluster.git
       targetRevision: main
       path: gitops/apps/monitoring/loki/sealedsecrets

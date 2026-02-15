@@ -8,6 +8,7 @@ global:
 deploymentMode: Distributed
 
 loki:
+  replication_factor: 1
   limits_config:
     retention_period: 1d
   storage:

@@ -10,6 +10,10 @@ service:
   type: ClusterIP
   port: 8080
 
+podAnnotations:
+  sidecar.opentelemetry.io/inject: "otel-resources/collector"
+  instrumentation.opentelemetry.io/inject-nodejs: "otel-resources/instrumentation"
+
 ingress:
   enabled: true
   className: "traefik"

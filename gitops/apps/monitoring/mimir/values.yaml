@@ -41,6 +41,3 @@ minio:
 
 nginx:
   enabled: false
-
-gateway:
-  enabled: true

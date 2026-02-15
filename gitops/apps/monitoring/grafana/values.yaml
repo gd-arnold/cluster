@@ -25,8 +25,24 @@ datasources:
   datasources.yaml:
     apiVersion: 1
     datasources:
-      - name: Prometheus
+      - name: Metrics
         type: prometheus
-        url: http://kube-prometheus-stack-prometheus.kube-prometheus-stack:9090
+        uid: mimir
+        orgId: 1
+        url: http://mimir-gateway.mimir.svc.cluster.local/prometheus
         access: proxy
         isDefault: true
+        jsonData:
+          httpHeaderName1: "X-Scope-OrgID"
+        secureJsonData:
+          httpHeaderValue1: "default"
+      - name: Logs
+        type: loki
+        uid: loki
+        orgId: 1
+        url: http://loki-gateway.loki.svc.cluster.local
+        access: proxy
+        jsonData:
+          httpHeaderName1: "X-Scope-OrgID"
+        secureJsonData:
+          httpHeaderValue1: "default"

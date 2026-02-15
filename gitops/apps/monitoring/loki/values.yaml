@@ -8,7 +8,6 @@ global:
 deploymentMode: Distributed
 
 loki:
-  replication_factor: 1
   limits_config:
     retention_period: 1d
   storage:
@@ -47,7 +46,7 @@ gateway:
   enabled: true
 
 ingester:
-  replicas: 1
+  replicas: 3
   zoneAwareReplication:
     enabled: false
   persistence:
@@ -59,22 +58,22 @@ ingester:
         size: 1Gi
 
 distributor:
-  replicas: 1
+  replicas: 3
 
 querier:
-  replicas: 1
+  replicas: 3
 
 queryFrontend:
-  replicas: 1
+  replicas: 3
 
 queryScheduler:
-  replicas: 1
+  replicas: 3
 
 indexGateway:
-  replicas: 1
+  replicas: 2
   persistence:
     enabled: true
-    size: 2Gi
+    size: 1Gi
 
 compactor:
   replicas: 1

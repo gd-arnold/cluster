@@ -9,7 +9,6 @@ destinations:
   - name: loki
     type: loki
     url: "http://loki-gateway.loki.svc.cluster.local/loki/api/v1/push"
-    tenantId: "default"
 
 clusterMetrics:
   enabled: true
@@ -107,6 +106,16 @@ podLogs:
   enabled: true
   destinations:
     - loki
+  namespaces: [blog, arena-gamestate-service, arena-gateway-service, arena-matchmaking-service, arena-web-frontend]
+  extraLogProcessingStages: |
+  stage.match {
+    selector = "{namespace=~\"arena-gamestate-service|arena-gateway-service|arena-matchmaking-service|arena-web-frontend\"}"
+    stage.tenant { value = "arena" }
+  }
+  stage.match {
+    selector = "{namespace=\"blog\"}"
+    stage.tenant { value = "blog" }
+  }
 
 alloy-logs:
   enabled: true

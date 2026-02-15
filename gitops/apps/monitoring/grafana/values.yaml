@@ -46,3 +46,23 @@ datasources:
           httpHeaderName1: "X-Scope-OrgID"
         secureJsonData:
           httpHeaderValue1: "default"
+      - name: Logs
+        type: loki
+        uid: loki
+        orgId: 1
+        url: http://loki-gateway.loki.svc.cluster.local
+        access: proxy
+        jsonData:
+          httpHeaderName1: "X-Scope-OrgID"
+        secureJsonData:
+          httpHeaderValue1: "blog"
+      - name: Logs
+        type: loki
+        uid: loki
+        orgId: 1
+        url: http://loki-gateway.loki.svc.cluster.local
+        access: proxy
+        jsonData:
+          httpHeaderName1: "X-Scope-OrgID"
+        secureJsonData:
+          httpHeaderValue1: "arena"

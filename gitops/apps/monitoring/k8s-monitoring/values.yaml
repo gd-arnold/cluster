@@ -87,6 +87,7 @@ clusterMetrics:
         - node_disk_io_now
   windows-exporter:
     enabled: false
+    deploy: false
 
 alloy-metrics:
   enabled: true

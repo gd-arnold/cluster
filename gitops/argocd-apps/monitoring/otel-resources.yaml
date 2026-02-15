@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: otel-resources
+  namespace: argocd
+spec:
+  project: monitoring
+  sources:
+    - repoURL: git@github.com:gd-arnold/cluster.git
+      targetRevision: main
+      path: gitops/apps/monitoring/otel-resources
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: otel-resources
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true

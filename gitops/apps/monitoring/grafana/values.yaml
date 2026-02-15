@@ -66,3 +66,13 @@ datasources:
           httpHeaderName1: "X-Scope-OrgID"
         secureJsonData:
           httpHeaderValue1: "arena"
+      - name: Tempo
+        type: tempo
+        uid: tempo
+        orgId: 1
+        url: http://tempo-gateway.tempo.svc.cluster.local
+        access: proxy
+        jsonData:
+          httpHeaderName1: "X-Scope-OrgID"
+        secureJsonData:
+          httpHeaderValue1: "default"

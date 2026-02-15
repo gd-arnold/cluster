@@ -4,11 +4,11 @@ cluster:
 destinations:
   - name: mimir
     type: prometheus
-    url: "http://mimir-gateway.mimir.svc.cluster.local"
+    url: "http://mimir-gateway.mimir.svc.cluster.local/api/v1/push"
     tenantId: "default"
   - name: loki
     type: loki
-    url: "http://loki-gateway.loki.svc.cluster.local"
+    url: "http://loki-gateway.loki.svc.cluster.local/loki/api/v1/push"
     tenantId: "default"
 
 clusterMetrics:

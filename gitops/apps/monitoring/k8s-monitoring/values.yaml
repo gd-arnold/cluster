@@ -1,0 +1,122 @@
+cluster:
+  name: "ubuntu-16gb-fsn1-1"
+
+destinations:
+  - name: mimir
+    type: prometheus
+    url: "http://mimir-gateway.mimir.svc.cluster.local"
+    tenantId: "default"
+  - name: loki
+    type: loki
+    url: "http://loki-gateway.loki.svc.cluster.local"
+    tenantId: "default"
+
+clusterMetrics:
+  enabled: true
+  destinations:
+    - mimir
+  cadvisor:
+    enabled: true
+    metricsTuning:
+      includeMetrics:
+        - machine_cpu_cores
+        - machine_memory_bytes
+        - container_cpu_usage_seconds_total
+        - container_memory_working_set_bytes
+        - container_oom_events_total
+        - container_cpu_cfs_throttled_seconds_total
+        - container_network_receive_errors_total
+        - container_network_transmit_errors_total
+  kube-state-metrics:
+    enabled: true
+    deploy: true
+    metricsTuning:
+      includeMetrics:
+        - kube_node_info
+        - kube_pod_info
+        - kube_horizontalpodautoscaler_metadata_generation
+        - kube_horizontalpodautoscaler_spec_target_metric
+        - kube_horizontalpodautoscaler_status_target_metric
+        - kube_namespace_created
+  node-exporter:
+    enabled: true
+    deploy: true
+    metricsTuning:
+      includeMetrics:
+        - node_uname_info
+        - node_load1
+        - node_load5
+        - node_load15
+        - node_cpu_seconds_total
+        - node_cpu_core_throttles_total
+        - node_context_switches_total
+        - node_intr_total
+        - node_memory_MemTotal_bytes
+        - node_memory_MemAvailable_bytes
+        - node_memory_MemFree_bytes
+        - node_memory_Cached_bytes
+        - node_memory_Buffers_bytes
+        - node_memory_SwapTotal_bytes
+        - node_memory_SwapFree_bytes
+        - node_time_seconds
+        - node_boot_time_seconds
+        - node_filefd_maximum
+        - node_filefd_allocated
+        - node_timex_estimated_error_seconds
+        - node_timex_maxerror_seconds
+        - node_network_receive_bytes_total
+        - node_network_transmit_bytes_total
+        - node_network_receive_errs_total
+        - node_network_transmit_errs_total
+        - node_network_receive_packets_total
+        - node_network_transmit_packets_total
+        - node_network_receive_drop_total
+        - node_network_transmit_drop_total
+        - node_netstat_Tcp_CurrEstab
+        - node_nf_conntrack_entries
+        - node_nf_conntrack_entries_limit
+        - node_filesystem_avail_bytes
+        - node_filesystem_size_bytes
+        - node_filesystem_files_free
+        - node_filesystem_files
+        - node_filesystem_device_error
+        - node_disk_read_bytes_total
+        - node_disk_written_bytes_total
+        - node_disk_reads_completed_total
+        - node_disk_writes_completed_total
+        - node_disk_io_now
+  windows-exporter:
+    enabled: false
+
+alloy-metrics:
+  enabled: true
+
+clusterEvents:
+  enabled: true
+  destinations:
+    - loki
+
+alloy-singleton:
+  enabled: true
+
+nodeLogs:
+  enabled: true
+  destinations:
+    - loki
+
+podLogs:
+  enabled: true
+  destinations:
+    - loki
+
+alloy-logs:
+  enabled: true
+
+applicationObservability:
+  enabled: false
+
+alloy-receiver:
+  enabled: false
+
+selfReporting:
+  enabled: false

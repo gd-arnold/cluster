@@ -1,20 +1,35 @@
 global:
-  extraArgs:
-    - -config.expand-env=true
   extraEnvFrom:
     - secretRef:
         name: tempo-s3
 
+distributor:
+  extraArgs:
+    - -config.expand-env=true
+
 ingester:
   replicas: 1
+  config:
+    replication_factor: 1
+  extraArgs:
+    - -config.expand-env=true
   persistence:
     enabled: true
     size: 2Gi
 
 compactor:
+  extraArgs:
+    - -config.expand-env=true
   config:
     compaction:
       block_retention: 24h
+
+querier:
+  extraArgs:
+    - -config.expand-env=true
+queryFrontend:
+  extraArgs:
+    - -config.expand-env=true
 
 traces:
   otlp:

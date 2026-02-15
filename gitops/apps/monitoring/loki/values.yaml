@@ -47,6 +47,7 @@ gateway:
 
 ingester:
   replicas: 3
+  affinity: null
   zoneAwareReplication:
     enabled: false
   persistence:
@@ -59,22 +60,27 @@ ingester:
 
 distributor:
   replicas: 3
+  affinity: null
   maxUnavailable: 2
 
 querier:
   replicas: 3
+  affinity: null
   maxUnavailable: 2
 
 queryFrontend:
   replicas: 3
+  affinity: null
   maxUnavailable: 2
 
 queryScheduler:
   replicas: 3
+  affinity: null
   maxUnavailable: 2
 
 indexGateway:
   replicas: 2
+  affinity: null
   maxUnavailable: 1
   persistence:
     enabled: true

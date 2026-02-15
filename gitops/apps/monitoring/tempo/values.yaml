@@ -46,3 +46,6 @@ storage:
       endpoint: fsn1.your-objectstorage.com
       access_key: "${AWS_ACCESS_KEY_ID}"
       secret_key: "${AWS_SECRET_ACCESS_KEY}"
+
+gateway:
+  enabled: true

@@ -13,6 +13,12 @@ destinations:
     type: otlp
     protocol: http
     url: "http://tempo-gateway.tempo.svc.cluster.local/otlp"
+    metrics:
+      enabled: false
+    logs:
+      enabled: false
+    traces:
+      enabled: true
 
 clusterMetrics:
   enabled: true
@@ -126,6 +132,10 @@ alloy-logs:
 
 applicationObservability:
   enabled: true
+  destinations:
+    - mimir
+    - loki
+    - tempo
   receivers:
     otlp:
       grpc:
@@ -145,7 +155,7 @@ alloy-receiver:
       - name: otlp-grpc
         port: 4317
         targetPort: 4317
-        protoocl: TCP
+        protocol: TCP
       - name: otlp-http
         port: 4318
         targetPort: 4318

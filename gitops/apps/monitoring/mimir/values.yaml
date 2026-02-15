@@ -43,4 +43,4 @@ nginx:
   enabled: false
 
 gateway:
-  enabled: false
+  enabled: true

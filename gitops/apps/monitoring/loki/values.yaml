@@ -59,18 +59,23 @@ ingester:
 
 distributor:
   replicas: 3
+  maxUnavailable: 2
 
 querier:
   replicas: 3
+  maxUnavailable: 2
 
 queryFrontend:
   replicas: 3
+  maxUnavailable: 2
 
 queryScheduler:
   replicas: 3
+  maxUnavailable: 2
 
 indexGateway:
   replicas: 2
+  maxUnavailable: 1
   persistence:
     enabled: true
     size: 1Gi

@@ -14,7 +14,7 @@ ingester:
 compactor:
   config:
     compaction:
-      block_retention: 1d
+      block_retention: 24h
 
 traces:
   otlp:

@@ -101,9 +101,7 @@ alloy-singleton:
   enabled: true
 
 nodeLogs:
-  enabled: true
-  destinations:
-    - loki
+  enabled: false
 
 podLogs:
   enabled: true

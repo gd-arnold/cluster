@@ -36,6 +36,7 @@ datasources:
           httpHeaderName1: "X-Scope-OrgID"
         secureJsonData:
           httpHeaderValue1: "default"
+          timeInterval: 60s
       - name: Logs
         type: loki
         uid: loki

@@ -1,6 +1,9 @@
 cluster:
   name: "ubuntu-16gb-fsn1-1"
 
+global:
+  scrapeInterval: 15s
+
 destinations:
   - name: mimir
     type: prometheus

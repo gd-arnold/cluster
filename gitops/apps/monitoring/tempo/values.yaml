@@ -3,6 +3,13 @@ global:
     - secretRef:
         name: tempo-s3
 
+overrides:
+  defaults:
+    metrics_generator:
+      processors:
+        - service-graphs
+        - span-metrics
+
 distributor:
   extraArgs:
     - -config.expand-env=true

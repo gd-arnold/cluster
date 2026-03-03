@@ -1,0 +1,21 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "mimir-auth",
+    "namespace": "mimir",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "mimir-auth",
+        "namespace": "mimir",
+        "creationTimestamp": null
+      }
+    },
+    "encryptedData": {
+      ".htpasswd": "AgA9f5Jqy27QDPOeWKEziRejY8R/ymhDbaaW2ibsKHD0dWHPMzs+8YCl5kbmomKbXcF4iadzwer2NccvpG5Pjh4/uAqjtNl2g0Ee6PRwwmHm7tCNq9Vtm1+Sn4gRuvPMOwldlSrsj4ucyeUafkdnUiIkIJ8bRvTowk0T9cJFjiE3CdWChsY/7rdFCr2tMKX/doEASSIbxIl/MnfZFNzsdg6Ce1mrfxXHztXZzek/V8VsoPz7F8v3XYql/3aWppfMI0QTF/ygIZakifB1V/YeQh05WAcU+MMi4Te8aFQZkZHPiXQh/35wB2TO1VzIdJJNLbIYofGsdGk472Ss2YhzkBTZTUAoDfXHNAR1b3e2R79yl/9pNziJyX7y9eA21KPThyopWRHJsKMY4p1Fcw51bjtPXwR+M1BvMmwEnOQYc0PmuN7iqxpxxbFgH9aJ08U4HWV9m2FS4yhKx1cqhcR/dh3rT8WcPDOS4CZIKG+K9Wsfps0NRDhM8BgAQ/GhzefuwzclKR8h77md02nj8qB1kJSyOVcEEJ8fTLnv84fmNonOsaeq6xJPES0FrYKFmdT/IhDkiIVyqN5MH7jgieRMkZke2P9MP7MFeWofr8kAhXmVehcLjNSIoZFsafbYJerDAb2o0/v+G0Edxpjeu2JT3wP1d8/T2Zi/2Am7izmK1tMl/CnlpVX8AsqpIxRHhZgkTZluGcpbUegGyjzN6kg="
+    }
+  }
+}

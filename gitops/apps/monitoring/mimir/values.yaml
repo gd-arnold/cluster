@@ -44,3 +44,24 @@ nginx:
 
 gateway:
   enabledNonEnterprise: true
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    hosts:
+      - host: mimir.garnaudov.com
+        paths:
+          - path: /
+            pathType: Prefix
+      - host: otlp.garnaudov.com
+        paths:
+          - path: /v1/metrics
+            pathType: Prefix 
+    tls:
+      - secretName: mimir-tls
+        hosts:
+          - mimir.garnaudov.com
+          - otlp.garnaudov.com
+  nginx:
+    basicAuth:
+      enabled: true
+      existingSecret: mimir-auth

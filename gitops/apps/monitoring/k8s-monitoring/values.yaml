@@ -29,7 +29,7 @@ destinations:
   - name: tempo
     type: otlp
     protocol: http
-    url: "https://otlp.garnaudov.com"
+    url: "https://otlp.garnaudov.com/otlp"
     auth:
       type: basic
       usernameKey: username

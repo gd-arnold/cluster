@@ -1,0 +1,22 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "loki-auth",
+    "namespace": "loki",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "loki-auth",
+        "namespace": "loki",
+        "creationTimestamp": null
+      },
+      "type": "Opaque"
+    },
+    "encryptedData": {
+      ".htpasswd": "AgBsWKbs3eJGT1FqdhSV+VNjK8t16PMoO+Pp2KJ8w2qIm9IYA2AXC+HJLD0jNwSABVW6HEdRho4koRbt0d01zHNp/Jr2+tkXRFqY6qYVhO1zpbdtY72p87Xifmc8k2xS9Hj2i+HA2I9/c4Ueas4qpfzry7G9UwM4zru0/WEE2bFrU4HeBcIFYt+wJ/IIoIfV8qXOwndE/QAqXEBDZ354zbvRjKn76VbzYGsKREznEsHvo5MnObDKmaRe33tpk4B+rG2fYiVppR23FKGEOVo2A1GrDImcufOiHWz0lXFrdVh+qQu4/yqndcb8gWxcee9m5WtAwbGiM9vIXP7XeXfktFc+h6FVNjiaOhESljp1tN4AcMinARZgx/KMST7HWPJpXOg/L/yY7qlRSqiu+AKyJ6aaFUSN/JyJj/V/3V7Mwpf5s+lZ7Y7WSXAJYVY1v+Gce1FECsGPuY3YYYQS1cmJQdSlVOjch+9DlYkDKsZ3eu/1Io1qFObi/G+ll/0Wl5brq2oNgafehtYoFpiFFKY1vDcSRjknnITpWjOTU3nlzigOLm37TwMenbcwpgK9uhkYHvmRDffYXq5xqYwAl7SuJDYtX4SMO8PKRRTt2yaF3NkAOGtj02ddZnv1WuEJL05tUz4IHPj9cnVespwdbMT57uOxJurs+oeH4KiIhtEgMPlpDu0ZTnW9F1P+bIYSytXPkZKqAjsqpPIXJQvO0FdakWCI4JyJWMIHDZbdcJIFn4gsg42M3dCq8Ym1JwmJdw=="
+    }
+  }
+}

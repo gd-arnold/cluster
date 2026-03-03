@@ -44,6 +44,24 @@ lokiCanary:
 
 gateway:
   enabled: true
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    hosts:
+      - host: loki.garnaudov.com
+        paths:
+          - path: /
+      - host: otlp.garnaudov.com
+        paths:
+          - path: /otlp/v1/logs
+    tls:
+      - secretName: loki-tls
+        hosts:
+          - loki.garnaudov.com
+          - otlp.garnaudov.com
+  basicAuth:
+    enabled: true
+    existingSecret: loki-auth
 
 ingester:
   replicas: 3

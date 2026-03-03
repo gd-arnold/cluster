@@ -51,11 +51,11 @@ gateway:
       - host: loki.garnaudov.com
         paths:
           - path: /
-          - pathType: Prefix
+            pathType: Prefix
       - host: otlp.garnaudov.com
         paths:
           - path: /otlp/v1/logs
-          - pathType: Prefix
+            pathType: Prefix
     tls:
       - secretName: loki-tls
         hosts:

@@ -54,7 +54,7 @@ gateway:
             pathType: Prefix
       - host: otlp.garnaudov.com
         paths:
-          - path: /v1/metrics
+          - path: /otlp/v1/metrics
             pathType: Prefix 
     tls:
       - secretName: mimir-tls

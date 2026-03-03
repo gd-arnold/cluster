@@ -7,19 +7,40 @@ global:
 destinations:
   - name: mimir
     type: prometheus
-    url: "http://mimir-gateway.mimir.svc.cluster.local/api/v1/push"
+    url: "https://mimir.garnaudov.com/api/v1/push"
     tenantId: "default"
+    auth:
+      type: basic
+      usernameKey: username
+      passwordKey: password
+    secret:
+      create: false
+      name: destinations-auth
   - name: loki
     type: loki
-    url: "http://loki-gateway.loki.svc.cluster.local/loki/api/v1/push"
+    url: "https://loki.garnaudov.com/loki/api/v1/push"
+    auth:
+      type: basic
+      usernameKey: username
+      passwordKey: password
+    secret:
+      create: false
+      name: destinations-auth
   - name: tempo
     type: otlp
     protocol: http
-    url: "http://tempo-gateway.tempo.svc.cluster.local/otlp"
+    url: "https://otlp.garnaudov.com"
+    auth:
+      type: basic
+      usernameKey: username
+      passwordKey: password
+    secret:
+      create: false
+      name: destinations-auth
     metrics:
-      enabled: false
+      enabled: true
     logs:
-      enabled: false
+      enabled: true
     traces:
       enabled: true
 

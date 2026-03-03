@@ -69,3 +69,17 @@ metricsGenerator:
 
 gateway:
   enabled: true
+  ingress:
+    enabled: true
+    hosts:
+      - host: otlp.garnaudov.com
+        paths:
+          - path: /otlp/v1/traces
+            pathType: Prefix
+    tls:
+      - secretName: tempo-tls
+        hosts:
+          - otlp.garnaudov.com
+  basicAuth:
+    enabled: true
+    existingSecret: tempo-auth

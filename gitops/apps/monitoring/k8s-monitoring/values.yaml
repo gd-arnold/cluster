@@ -8,11 +8,11 @@ destinations:
   - name: mimir
     type: prometheus
     url: "https://mimir.garnaudov.com/api/v1/push"
-    tenantId: "default"
     auth:
       type: basic
       usernameKey: username
       passwordKey: password
+    tenantIdKey: tenantId
     secret:
       create: false
       name: destinations-auth

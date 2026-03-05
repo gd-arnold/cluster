@@ -34,6 +34,9 @@ persistence:
 datasources:
   datasources.yaml:
     apiVersion: 1
+    deleteDatasources:
+      - name: Logs Blog
+      - name: Logs Arena
     datasources:
       - name: Metrics
         type: prometheus
@@ -62,32 +65,6 @@ datasources:
           httpHeaderName1: "X-Scope-OrgID"
         secureJsonData:
           httpHeaderValue1: "default"
-          basicAuthPassword: $__env{BASIC_AUTH_PASSWORD}
-      - name: Logs Blog
-        type: loki
-        uid: loki-blog
-        orgId: 1
-        url: http://loki-gateway.loki.svc.cluster.local
-        access: proxy
-        basicAuth: true
-        basicAuthUser: $__env{BASIC_AUTH_USER}
-        jsonData:
-          httpHeaderName1: "X-Scope-OrgID"
-        secureJsonData:
-          httpHeaderValue1: "blog"
-          basicAuthPassword: $__env{BASIC_AUTH_PASSWORD}
-      - name: Logs Arena
-        type: loki
-        uid: loki-arena
-        orgId: 1
-        url: http://loki-gateway.loki.svc.cluster.local
-        access: proxy
-        basicAuth: true
-        basicAuthUser: $__env{BASIC_AUTH_USER}
-        jsonData:
-          httpHeaderName1: "X-Scope-OrgID"
-        secureJsonData:
-          httpHeaderValue1: "arena"
           basicAuthPassword: $__env{BASIC_AUTH_PASSWORD}
       - name: Tempo
         type: tempo

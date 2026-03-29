@@ -29,6 +29,9 @@ destinations:
     secret:
       create: false
       name: destinations-auth
+  - name: victoria-logs  
+    type: loki
+    url: "http://victoria-logs-victoria-logs-single-server.victoria-logs.svc.cluster.local:9428/insert/loki/api/v1/push"
   - name: otlp
     type: otlp
     protocol: http
@@ -95,6 +98,7 @@ clusterEvents:
   enabled: true
   destinations:
     - loki
+    - victoria-logs
 
 alloy-singleton:
   enabled: true
@@ -106,6 +110,7 @@ podLogs:
   enabled: true
   destinations:
     - loki
+    - victoria-logs
 
 alloy-logs:
   enabled: true

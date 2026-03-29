@@ -53,6 +53,12 @@ datasources:
           httpHeaderValue1: "default"
           timeInterval: 60s
           basicAuthPassword: $__env{BASIC_AUTH_PASSWORD}
+      - name: Victoria Metrics
+        type: prometheus
+        uid: victoria-metrics
+        orgId: 1
+        url: "http://victoria-metrics-victoria-metrics-single-server.victoria-metrics.svc.cluster.local:8428"
+        access: proxy
       - name: Logs
         type: loki
         uid: loki

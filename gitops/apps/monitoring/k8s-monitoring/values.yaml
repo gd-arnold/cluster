@@ -29,7 +29,7 @@ destinations:
     secret:
       create: false
       name: destinations-auth
-  - name: tempo
+  - name: otlp
     type: otlp
     protocol: http
     url: "https://otlp.garnaudov.com/otlp"
@@ -113,9 +113,7 @@ alloy-logs:
 applicationObservability:
   enabled: true
   destinations:
-    - mimir
-    - loki
-    - tempo
+    - otlp
   receivers:
     otlp:
       grpc:
@@ -128,7 +126,7 @@ applicationObservability:
 alloy-receiver:
   enabled: true
   destinations:
-    - tempo
+    - otlp
   alloy:
     enableReporting: false
     extraPorts:

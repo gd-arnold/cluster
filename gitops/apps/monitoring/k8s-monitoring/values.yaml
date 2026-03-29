@@ -16,6 +16,9 @@ destinations:
     secret:
       create: false
       name: destinations-auth
+  - name: victoria-metrics
+    type: prometheus
+    url: "http://victoria-metrics-victoria-metrics-single-server.victoria-metrics.svc.cluster.local:8428/api/v1/write"
   - name: loki
     type: loki
     url: "https://loki.garnaudov.com/loki/api/v1/push"
@@ -48,6 +51,7 @@ clusterMetrics:
   enabled: true
   destinations:
     - mimir
+    - victoria-metrics
   kubelet:
     metricsTuning:
       useDefaultAllowList: false

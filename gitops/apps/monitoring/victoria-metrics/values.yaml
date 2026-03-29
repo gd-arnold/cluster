@@ -1,6 +1,6 @@
 server:
   enabled: true
-  retentionPeriod: 3h
+  retentionPeriod: 1d
   persistentVolume:
     enabled: true
     storageClassName: "local-path"

@@ -1,0 +1,6 @@
+server:
+  enabled: true
+  retentionPeriod: 1d
+  persistentVolume:
+    enabled: true
+    storageClassName: "local-path"

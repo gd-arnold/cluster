@@ -126,6 +126,10 @@ applicationObservability:
         enabled: true
       exemplars:
         enabled: true
+      dimensions:
+        - name: "http.status_code"
+        - name: "http.method"
+        - name: "http.route"
   receivers:
     otlp:
       grpc:

@@ -119,6 +119,13 @@ applicationObservability:
   enabled: true
   destinations:
     - otlp
+  connectors:
+    spanMetrics:
+      enabled: true
+      events:
+        enabled: true
+      exemplars:
+        enabled: true
   receivers:
     otlp:
       grpc:

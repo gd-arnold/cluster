@@ -130,6 +130,13 @@ applicationObservability:
         - name: "http.status_code"
         - name: "http.method"
         - name: "http.route"
+  traces:
+    transforms:
+      span:
+        - 'set(attributes["span.metrics.skip"], true) where attributes["http.route"] == "/health"'
+    filters:
+      span:
+        - 'attributes["http.route"] == "/health"'
   receivers:
     otlp:
       grpc:

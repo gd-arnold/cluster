@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: otel-resources
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: monitoring
   sources:

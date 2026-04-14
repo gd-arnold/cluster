@@ -1,0 +1,104 @@
+name: Publish Helm Charts
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - charts/**
+      - .github/workflows/publish-charts.yaml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      REGISTRY: ghcr.io
+      CHART_REGISTRY: oci://ghcr.io/gd-arnold/cluster/charts
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+
+      - name: Log in to GHCR
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          printf '%s' "${GITHUB_TOKEN}" | helm registry login "${REGISTRY}" \
+            --username "${{ github.actor }}" \
+            --password-stdin
+
+      - name: Publish charts
+        shell: bash
+        env:
+          EVENT_BEFORE: ${{ github.event.before }}
+        run: |
+          set -euo pipefail
+
+          package_dir=".chart-packages"
+          mkdir -p "${package_dir}"
+
+          chart_field() {
+            local field="$1"
+            local file="$2"
+
+            sed -n "s/^${field}:[[:space:]]*//p" "${file}" | head -n 1 | tr -d '"'"'"'
+          }
+
+          selected_charts() {
+            if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ]; then
+              find charts -mindepth 1 -maxdepth 1 -type d | sort
+              return
+            fi
+
+            if [ -n "${EVENT_BEFORE}" ] && [ "${EVENT_BEFORE}" != "0000000000000000000000000000000000000000" ]; then
+              git diff --name-only "${EVENT_BEFORE}" "${GITHUB_SHA}" -- charts
+            else
+              git diff --name-only HEAD^ HEAD -- charts 2>/dev/null || true
+            fi | awk -F/ 'NF >= 2 { print $1 "/" $2 }' | sort -u
+          }
+
+          published_any=false
+
+          while IFS= read -r chart_dir; do
+            [ -f "${chart_dir}/Chart.yaml" ] || continue
+
+            chart_file="${chart_dir}/Chart.yaml"
+            chart_name="$(chart_field name "${chart_file}")"
+            chart_version="$(chart_field version "${chart_file}")"
+            chart_ref="${CHART_REGISTRY}/${chart_name}"
+
+            if [ -z "${chart_name}" ] || [ -z "${chart_version}" ]; then
+              echo "::error::Unable to read name/version from ${chart_file}"
+              exit 1
+            fi
+
+            if helm show chart "${chart_ref}" --version "${chart_version}" > /dev/null 2>&1; then
+              echo "Skipping ${chart_ref}:${chart_version}; it already exists."
+              continue
+            fi
+
+            if grep -q '^dependencies:' "${chart_file}"; then
+              helm dependency update "${chart_dir}"
+            fi
+
+            helm lint "${chart_dir}"
+            helm package "${chart_dir}" --destination "${package_dir}"
+            helm push "${package_dir}/${chart_name}-${chart_version}.tgz" "${CHART_REGISTRY}"
+            published_any=true
+          done < <(selected_charts)
+
+          if [ "${published_any}" = false ]; then
+            echo "No charts to publish."
+          fi

@@ -2,9 +2,9 @@ projects:
   system:
     argocd:
       chart:
-        repoURL: https://bitnami-labs.github.io/sealed-secrets
+        repoURL: https://argoproj.github.io/argo-helm
         name: argo-cd
-        version: 2.3.4
+        version: 9.1.3
       extraResources:
         - sealedsecrets
       namespace: argocd

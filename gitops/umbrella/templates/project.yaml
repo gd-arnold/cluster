@@ -11,9 +11,9 @@ spec:
   destinations:
     - server: https://kubernetes.default.svc
       namespace: argocd
-  {{- range $app, $_ := $apps }}
+  {{- range $app, $cfg := $apps }}
     - server: https://kubernetes.default.svc
-      namespace: {{ $app }}
+      namespace: {{ $cfg.namespace }}
   {{- end }}
   clusterResourceWhitelist:
     - group: '*'

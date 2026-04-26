@@ -7,22 +7,26 @@ projects:
         version: 2.3.4
       extraResources:
         - sealedsecrets
+      namespace: argocd
     sealed-secrets:
       chart:
         repoURL: https://bitnami-labs.github.io/sealed-secrets
         name: sealed-secrets
         version: 2.17.9
+      namespace: kube-system
     cert-manager:
       chart:
         repoURL: https://charts.jetstack.io
         name: cert-manager
         version: 1.18.0
+      namespace: cert-manager
   sites:
     blog:
       chart:
         repoURL: ghcr.io/gd-arnold/cluster/charts
         name: blog
         version: 0.1.0
+      namespace: blog
   arena:
     web-frontend:
       chart:
@@ -31,6 +35,7 @@ projects:
         version: 0.1.2
       extraResources:
         - sealedsecrets
+      namespace: arena
     gateway-service:
       chart:
         repoURL: ghcr.io/gd-arnold/cluster/charts
@@ -38,13 +43,16 @@ projects:
         version: 0.2.1
       extraResources:
         - sealedsecrets
+      namespace: arena
     gamestate-service:
       chart:
         repoURL: ghcr.io/gd-arnold/cluster/charts
         name: gamestate-service
         version: 0.1.0
+      namespace: arena
     matchmaking-service:
       chart:
         repoURL: ghcr.io/gd-arnold/cluster/charts
         name: matchmaking-service
         version: 0.2.1
+      namespace: arena

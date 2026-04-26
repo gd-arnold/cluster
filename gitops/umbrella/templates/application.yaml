@@ -1,0 +1,35 @@
+{{- range $project, $apps := .Values.projects }}
+{{- range $app, $cfg := $apps }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $app }}
+  namespace: argocd
+spec:
+  project: {{ $project }}
+  sources:
+    - repoURL: {{ $cfg.chart.repoURL  }}
+      chart: {{ $cfg.chart.name }}
+      targetRevision: {{ $cfg.chart.version | quote }}
+      helm:
+        valueFiles:
+          - $values/gitops/apps/{{ $project }}/{{ $app }}/values.yaml
+    - repoURL: git@github.com:gd-arnold/cluster.git
+      targetRevision: main
+      path: .
+      ref: values
+    {{- range $resources := $cfg.extraResources }}
+    - repoURL: git@github.com:gd-arnold/cluster.git
+      targetRevision: main
+      path: gitops/apps/{{ $project }}/{{ $app }}/{{ $resources }}
+    {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ $app }}
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: true
+{{- end }}
+{{- end }}

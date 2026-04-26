@@ -1,0 +1,50 @@
+projects:
+  system:
+    argocd:
+      chart:
+        repoURL: https://bitnami-labs.github.io/sealed-secrets
+        name: argo-cd
+        version: 2.3.4
+      extraResources:
+        - sealedsecrets
+    sealed-secrets:
+      chart:
+        repoURL: https://bitnami-labs.github.io/sealed-secrets
+        name: sealed-secrets
+        version: 2.17.9
+    cert-manager:
+      chart:
+        repoURL: https://charts.jetstack.io
+        name: cert-manager
+        version: 1.18.0
+  sites:
+    blog:
+      chart:
+        repoURL: ghcr.io/gd-arnold/cluster/charts
+        name: blog
+        version: 0.1.0
+  arena:
+    web-frontend:
+      chart:
+        repoURL: ghcr.io/gd-arnold/cluster/charts
+        name: web-frontend
+        version: 0.1.2
+      extraResources:
+        - sealedsecrets
+    gateway-service:
+      chart:
+        repoURL: ghcr.io/gd-arnold/cluster/charts
+        name: gateway-service
+        version: 0.2.1
+      extraResources:
+        - sealedsecrets
+    gamestate-service:
+      chart:
+        repoURL: ghcr.io/gd-arnold/cluster/charts
+        name: gamestate-service
+        version: 0.1.0
+    matchmaking-service:
+      chart:
+        repoURL: ghcr.io/gd-arnold/cluster/charts
+        name: matchmaking-service
+        version: 0.2.1

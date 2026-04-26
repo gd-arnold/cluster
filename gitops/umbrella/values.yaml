@@ -26,6 +26,8 @@ projects:
         repoURL: ghcr.io/gd-arnold/cluster/charts
         name: blog
         version: 0.1.0
+      extraResources:
+        - sealedsecrets
       namespace: blog
   arena:
     web-frontend:

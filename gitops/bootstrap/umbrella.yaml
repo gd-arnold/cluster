@@ -4,7 +4,7 @@ metadata:
   name: umbrella
   namespace: argocd
 spec:
-  project: system
+  project: default
   sources:
     - repoURL: git@github.com:gd-arnold/cluster.git
       targetRevision: main

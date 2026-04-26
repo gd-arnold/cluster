@@ -1,5 +1,6 @@
 {{- range $project, $apps := .Values.projects }}
 {{- range $app, $cfg := $apps }}
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

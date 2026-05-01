@@ -1,0 +1,13 @@
+ingress:
+  enabled: true
+  className: "traefik"
+  hosts:
+    - grafana.garnaudov.com
+  tls:
+    - secretName: grafana-tls
+      hosts:
+        - grafana.garnaudov.com
+
+persistence:
+  enabled: true
+  size: 10Gi

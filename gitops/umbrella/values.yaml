@@ -20,6 +20,15 @@ projects:
         name: cert-manager
         version: 1.18.0
       namespace: cert-manager
+  monitoring:
+    grafana:
+      chart:
+        repoURL: https://grafana-community.github.io/helm-charts
+        name: grafana
+        version: 12.3.0
+      extraResources:
+        - sealedsecrets
+      namespace: grafana
   sites:
     blog:
       chart:

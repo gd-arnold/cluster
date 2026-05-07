@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/gd-arnold/music-visualizer
-  tag: "501b81e"
+  tag: "180fba3"
 
 imagePullSecrets:
   - name: ghcr-pull
@@ -70,5 +70,7 @@ env:
     value: fast
   - name: CODEX_RESEARCH_SERVICE_TIER
     value: fast
+  - name: HTTPS_REDIRECT_HOSTS
+    value: codexonair.com
   - name: MAX_ACTIVE_PREPARATIONS
     value: "1"

@@ -112,7 +112,7 @@ spec:
           emptyDir: {}
           {{- end }}
         - name: codex-home
-          {{- if .Values.persistence.codexHome.enabled }}
+          {{- if and .Values.worker.codexHome.persistence.enabled .Values.persistence.codexHome.enabled }}
           persistentVolumeClaim:
             claimName: {{ include "codex-on-air.fullname" . }}-codex-home
           {{- else }}

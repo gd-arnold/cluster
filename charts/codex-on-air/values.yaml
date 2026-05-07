@@ -94,6 +94,9 @@ env:
 worker:
   enabled: false
   replicaCount: 1
+  codexHome:
+    persistence:
+      enabled: true
   command:
     - npm
     - run

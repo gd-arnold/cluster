@@ -31,11 +31,11 @@ ingress:
 
 resources:
   requests:
-    cpu: 500m
-    memory: 1Gi
+    cpu: 250m
+    memory: 512Mi
   limits:
-    cpu: "4"
-    memory: 6Gi
+    cpu: "1"
+    memory: 1Gi
 
 persistence:
   generated:
@@ -79,6 +79,8 @@ env:
     value: codexonair.com
   - name: MAX_ACTIVE_PREPARATIONS
     value: "1"
+  - name: DATABASE_POOL_MAX
+    value: "3"
   - name: DATABASE_URL
     valueFrom:
       secretKeyRef:
@@ -87,14 +89,17 @@ env:
 
 worker:
   enabled: true
-  replicaCount: 1
+  replicaCount: 8
+  codexHome:
+    persistence:
+      enabled: false
   resources:
     requests:
       cpu: 500m
       memory: 1Gi
     limits:
-      cpu: "4"
-      memory: 6Gi
+      cpu: "2"
+      memory: 3Gi
   env:
     - name: WORKER_POLL_INTERVAL_MS
       value: "5000"

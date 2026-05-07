@@ -6,6 +6,10 @@ kind: Application
 metadata:
   name: {{ $app }}
   namespace: argocd
+  {{- if hasKey $cfg "syncWave" }}
+  annotations:
+    argocd.argoproj.io/sync-wave: {{ $cfg.syncWave | quote }}
+  {{- end }}
 spec:
   project: {{ $project }}
   sources:
@@ -30,6 +34,9 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
+    {{- range $option := $cfg.syncOptions }}
+      - {{ $option | quote }}
+    {{- end }}
     automated:
       selfHeal: true
 {{- end }}

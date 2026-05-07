@@ -20,6 +20,15 @@ projects:
         name: cert-manager
         version: 1.18.0
       namespace: cert-manager
+    cloudnative-pg:
+      chart:
+        repoURL: https://cloudnative-pg.github.io/charts
+        name: cloudnative-pg
+        version: 0.28.0
+      namespace: cnpg-system
+      syncWave: "-20"
+      syncOptions:
+        - ServerSideApply=true
   monitoring:
     grafana:
       chart:
@@ -38,6 +47,17 @@ projects:
       extraResources:
         - sealedsecrets
       namespace: blog
+    codex-on-air-db:
+      chart:
+        repoURL: https://cloudnative-pg.github.io/charts
+        name: cluster
+        version: 0.6.0
+      extraResources:
+        - sealedsecrets
+      namespace: codex-on-air
+      syncWave: "-10"
+      syncOptions:
+        - SkipDryRunOnMissingResource=true
     codex-on-air:
       chart:
         repoURL: ghcr.io/gd-arnold/cluster/charts
@@ -46,6 +66,7 @@ projects:
       extraResources:
         - sealedsecrets
       namespace: codex-on-air
+      syncWave: "0"
   arena:
     web-frontend:
       chart:

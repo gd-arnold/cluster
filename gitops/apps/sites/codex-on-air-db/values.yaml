@@ -1,0 +1,32 @@
+fullnameOverride: codex-on-air-db
+
+type: postgresql
+
+version:
+  postgresql: "17"
+
+mode: standalone
+
+cluster:
+  instances: 1
+  storage:
+    size: 10Gi
+    storageClass: local-path
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: "1"
+      memory: 1Gi
+  enablePDB: false
+  monitoring:
+    enabled: false
+  initdb:
+    database: codex_on_air
+    owner: codex_on_air
+    secret:
+      name: codex-on-air-db-app
+
+backups:
+  enabled: false

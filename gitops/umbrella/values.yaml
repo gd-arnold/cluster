@@ -62,7 +62,7 @@ projects:
       chart:
         repoURL: ghcr.io/gd-arnold/cluster/charts
         name: codex-on-air
-        version: 0.1.0
+        version: 0.2.0
       extraResources:
         - sealedsecrets
       namespace: codex-on-air

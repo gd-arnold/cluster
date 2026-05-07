@@ -38,6 +38,14 @@ projects:
       extraResources:
         - sealedsecrets
       namespace: blog
+    codex-on-air:
+      chart:
+        repoURL: ghcr.io/gd-arnold/cluster/charts
+        name: codex-on-air
+        version: 0.1.0
+      extraResources:
+        - sealedsecrets
+      namespace: codex-on-air
   arena:
     web-frontend:
       chart:

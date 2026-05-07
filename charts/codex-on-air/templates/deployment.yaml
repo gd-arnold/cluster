@@ -1,0 +1,128 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "codex-on-air.fullname" . }}
+  labels:
+    {{- include "codex-on-air.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      {{- include "codex-on-air.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "codex-on-air.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "codex-on-air.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.codexAuthSeed.enabled }}
+      initContainers:
+        - name: seed-codex-auth
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -eu
+              mkdir -p /home/node/.codex
+              if [ ! -f /home/node/.codex/auth.json ]; then
+                cp {{ .Values.codexAuthSeed.mountPath }}/{{ .Values.codexAuthSeed.secretKey }} /home/node/.codex/auth.json
+                chmod 600 /home/node/.codex/auth.json
+              fi
+              chown -R 1000:1000 /home/node/.codex
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+            runAsNonRoot: false
+            allowPrivilegeEscalation: false
+          volumeMounts:
+            - name: codex-home
+              mountPath: /home/node/.codex
+            - name: codex-auth-seed
+              mountPath: {{ .Values.codexAuthSeed.mountPath }}
+              readOnly: true
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          {{- with .Values.env }}
+          env:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: generated-data
+              mountPath: /app/generated
+            - name: codex-home
+              mountPath: /home/node/.codex
+      volumes:
+        - name: generated-data
+          {{- if .Values.persistence.generated.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "codex-on-air.fullname" . }}-generated
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        - name: codex-home
+          {{- if .Values.persistence.codexHome.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "codex-on-air.fullname" . }}-codex-home
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        {{- if .Values.codexAuthSeed.enabled }}
+        - name: codex-auth-seed
+          secret:
+            secretName: {{ .Values.codexAuthSeed.secretName }}
+            defaultMode: 0400
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

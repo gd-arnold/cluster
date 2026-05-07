@@ -1,0 +1,117 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/gd-arnold/music-visualizer
+  pullPolicy: IfNotPresent
+  tag: ""
+
+imagePullSecrets: []
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext:
+  fsGroup: 1000
+  fsGroupChangePolicy: OnRootMismatch
+
+securityContext:
+  allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 1000
+
+service:
+  type: ClusterIP
+  port: 8787
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts: []
+  tls: []
+
+resources: {}
+
+livenessProbe:
+  httpGet:
+    path: /api/health
+    port: http
+  initialDelaySeconds: 30
+  periodSeconds: 20
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /api/health
+    port: http
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+env:
+  - name: NODE_ENV
+    value: production
+  - name: HOST
+    value: 0.0.0.0
+  - name: PORT
+    value: "8787"
+  - name: GENERATED_DIR
+    value: /app/generated
+  - name: CODEX_HOME
+    value: /home/node/.codex
+  - name: CODEX_RESEARCH_WEB_SEARCH
+    value: cached
+  - name: CODEX_RESEARCH_REASONING_EFFORT
+    value: medium
+  - name: CODEX_RESEARCH_TIMEOUT_MS
+    value: "180000"
+  - name: CODEX_GENERATION_REASONING_EFFORT
+    value: low
+  - name: CODEX_GENERATION_TIMEOUT_MS
+    value: "720000"
+  - name: CODEX_GENERATION_SERVICE_TIER
+    value: fast
+  - name: CODEX_RESEARCH_SERVICE_TIER
+    value: fast
+  - name: MAX_ACTIVE_PREPARATIONS
+    value: "1"
+
+persistence:
+  generated:
+    enabled: true
+    storageClassName: ""
+    accessModes:
+      - ReadWriteOnce
+    size: 30Gi
+    annotations:
+      helm.sh/resource-policy: keep
+  codexHome:
+    enabled: true
+    storageClassName: ""
+    accessModes:
+      - ReadWriteOnce
+    size: 1Gi
+    annotations:
+      helm.sh/resource-policy: keep
+
+codexAuthSeed:
+  enabled: false
+  secretName: codex-on-air-codex-auth-seed
+  secretKey: auth.json
+  mountPath: /codex-seed
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

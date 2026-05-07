@@ -1,0 +1,11 @@
+Codex On Air has been installed.
+
+Service:
+  {{ include "codex-on-air.fullname" . }}:{{ .Values.service.port }}
+
+{{- if .Values.ingress.enabled }}
+Ingress:
+{{- range .Values.ingress.hosts }}
+  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .host }}
+{{- end }}
+{{- end }}

@@ -1,0 +1,71 @@
+image:
+  repository: ghcr.io/gd-arnold/music-visualizer
+  tag: "501b81e"
+
+serviceAccount:
+  create: true
+  name: codex-on-air
+
+service:
+  type: ClusterIP
+  port: 8787
+
+ingress:
+  enabled: true
+  className: traefik
+  annotations: {}
+  hosts:
+    - host: codexonair.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 1Gi
+  limits:
+    cpu: "4"
+    memory: 6Gi
+
+persistence:
+  generated:
+    enabled: true
+    size: 30Gi
+  codexHome:
+    enabled: true
+    size: 1Gi
+
+codexAuthSeed:
+  enabled: true
+  secretName: codex-on-air-codex-auth-seed
+  secretKey: auth.json
+
+env:
+  - name: NODE_ENV
+    value: production
+  - name: HOST
+    value: 0.0.0.0
+  - name: PORT
+    value: "8787"
+  - name: GENERATED_DIR
+    value: /app/generated
+  - name: CODEX_HOME
+    value: /home/node/.codex
+  - name: CODEX_RESEARCH_WEB_SEARCH
+    value: cached
+  - name: CODEX_RESEARCH_REASONING_EFFORT
+    value: medium
+  - name: CODEX_RESEARCH_TIMEOUT_MS
+    value: "180000"
+  - name: CODEX_GENERATION_REASONING_EFFORT
+    value: low
+  - name: CODEX_GENERATION_TIMEOUT_MS
+    value: "720000"
+  - name: CODEX_GENERATION_SERVICE_TIER
+    value: fast
+  - name: CODEX_RESEARCH_SERVICE_TIER
+    value: fast
+  - name: MAX_ACTIVE_PREPARATIONS
+    value: "1"

@@ -1,0 +1,43 @@
+{{- if .Values.persistence.generated.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "codex-on-air.fullname" . }}-generated
+  labels:
+    {{- include "codex-on-air.labels" . | nindent 4 }}
+  {{- with .Values.persistence.generated.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  accessModes:
+    {{- toYaml .Values.persistence.generated.accessModes | nindent 4 }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.generated.size }}
+  {{- with .Values.persistence.generated.storageClassName }}
+  storageClassName: {{ . | quote }}
+  {{- end }}
+---
+{{- end }}
+{{- if .Values.persistence.codexHome.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "codex-on-air.fullname" . }}-codex-home
+  labels:
+    {{- include "codex-on-air.labels" . | nindent 4 }}
+  {{- with .Values.persistence.codexHome.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  accessModes:
+    {{- toYaml .Values.persistence.codexHome.accessModes | nindent 4 }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.codexHome.size }}
+  {{- with .Values.persistence.codexHome.storageClassName }}
+  storageClassName: {{ . | quote }}
+  {{- end }}
+{{- end }}

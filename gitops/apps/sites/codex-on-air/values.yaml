@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/gd-arnold/music-visualizer
-  tag: "180fba3"
+  tag: "32cbf99"
 
 imagePullSecrets:
   - name: ghcr-pull
@@ -74,3 +74,8 @@ env:
     value: codexonair.com
   - name: MAX_ACTIVE_PREPARATIONS
     value: "1"
+  - name: DATABASE_URL
+    valueFrom:
+      secretKeyRef:
+        name: codex-on-air-db-app
+        key: DATABASE_URL

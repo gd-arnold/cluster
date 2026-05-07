@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/gd-arnold/music-visualizer
-  tag: "d6411fd"
+  tag: "180fba3"
 
 imagePullSecrets:
   - name: ghcr-pull

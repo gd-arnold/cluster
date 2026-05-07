@@ -2,6 +2,9 @@ image:
   repository: ghcr.io/gd-arnold/music-visualizer
   tag: "501b81e"
 
+imagePullSecrets:
+  - name: ghcr-pull
+
 serviceAccount:
   create: true
   name: codex-on-air

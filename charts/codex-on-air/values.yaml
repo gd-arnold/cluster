@@ -7,6 +7,9 @@ image:
 
 imagePullSecrets: []
 
+command: []
+args: []
+
 nameOverride: ""
 fullnameOverride: ""
 
@@ -87,6 +90,22 @@ env:
     value: fast
   - name: MAX_ACTIVE_PREPARATIONS
     value: "1"
+
+worker:
+  enabled: false
+  replicaCount: 1
+  command:
+    - npm
+    - run
+    - start:worker
+  args: []
+  podAnnotations: {}
+  podLabels: {}
+  env: []
+  resources: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
 
 persistence:
   generated:

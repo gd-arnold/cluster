@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/gd-arnold/music-visualizer
-  tag: "6227ecc"
+  tag: "c920f2f"
 
 imagePullSecrets:
   - name: ghcr-pull
@@ -79,6 +79,8 @@ env:
     value: codexonair.com
   - name: MAX_ACTIVE_PREPARATIONS
     value: "1"
+  - name: MAX_ACTIVE_REQUESTS_PER_SESSION
+    value: "10"
   - name: DATABASE_POOL_MAX
     value: "3"
   - name: DATABASE_URL
